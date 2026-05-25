@@ -1,0 +1,77 @@
+export type AvatarObjectFit = "cover" | "contain" | "fill" | "none" | "scale-down";
+export type AvatarRadiusMode = "circle" | "rounded" | "square" | "custom";
+export type AvatarBorderStyle = "solid" | "dashed" | "dotted";
+export type AvatarLoadingState = "default" | "loading" | "error";
+export type AvatarStatus = "none" | "online" | "offline" | "busy" | "away";
+export type AvatarStatusPosition =
+  | "top-right"
+  | "bottom-right"
+  | "bottom-left"
+  | "top-left";
+export type AvatarStatusAnimation = "none" | "pulse";
+export type AvatarGroupDirection = "row" | "column";
+export type ThreeDBadgeMode = "none" | "sphere" | "cube" | "star";
+export type ThreeDStatusMode = "none" | "ring" | "halo";
+export type AvatarAccessoryType = "none" | "crown" | "halo-cyber" | "orb-float";
+export type MotionEntrance = "none" | "fade" | "scale" | "slide";
+export type MotionHover = "none" | "layout" | "scale" | "holo-card" | "float-y";
+export type AvatarTextureEffect = "none" | "glitch" | "fluid" | "glass";
+export type AvatarBorderEffect = "none" | "snake" | "heartbeat" | "glow-pulse";
+export type AvatarAriaRole = "img" | "figure" | "presentation" | "none";
+export type AvatarFallbackPriority = "auto" | "initials" | "image" | "status";
+
+export type AvatarExportInput = {
+  src: string;
+  srcSet: string;
+  alt: string;
+  title: string;
+  initials: string;
+  fallbackPriority: AvatarFallbackPriority;
+  objectFit: AvatarObjectFit;
+  objectPosition: string;
+  loadingState: AvatarLoadingState;
+  size: string;
+  aspectRatio: string;
+  radiusMode: AvatarRadiusMode;
+  radiusValue: number;
+  borderWidth: number;
+  borderColor: string;
+  borderStyle: AvatarBorderStyle;
+  borderOffset: number;
+  shadow: string;
+  opacity: number;
+  filterGrayscale: number;
+  filterBlur: number;
+  filterSepia: number;
+  filterBrightness: number;
+  filterContrast: number;
+  initialsBg: string;
+  initialsColor: string;
+  fontFamily: string;
+  status: AvatarStatus;
+  statusPosition: AvatarStatusPosition;
+  statusAnimation: AvatarStatusAnimation;
+  badgeCount: string;
+  showGroup: boolean;
+  groupSpacing: number;
+  groupLimit: number;
+  groupDirection: AvatarGroupDirection;
+  hoverZoom: boolean;
+  hoverGrayscale: boolean;
+  imageRotation: number;
+  imageScale: number;
+  effect3D: "none" | "tilt" | "glitch" | "pulse";
+  use3DBadge: ThreeDBadgeMode;
+  badgeAnimate: boolean;
+  use3DStatus: ThreeDStatusMode;
+  accessoryType: AvatarAccessoryType;
+  accessoryColor: string;
+  orbitSpeed: string;
+  entranceAnimation: MotionEntrance;
+  hoverEffect: MotionHover;
+  textureEffect: AvatarTextureEffect;
+  borderEffect: AvatarBorderEffect;
+  ariaLabel: string;
+  ariaRole: AvatarAriaRole;
+  ariaHidden: boolean;
+};
