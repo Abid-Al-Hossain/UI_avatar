@@ -1,67 +1,106 @@
 # UI Foundry Avatar Component Generator
 
-Standalone visual avatar generator built with Next.js.
+Standalone visual Avatar generator built with Next.js, React, and TypeScript.
 
-This app is a focused avatar-building studio for designing profile visuals, status states, grouped avatars, and presentation styling without hand-authoring the component from scratch.
+Identity and profile visual studio for avatars, grouped avatars, fallback presentation, status indicators, and export-safe profile UI treatments.
+
+This project is packaged as an independent component studio for marketplace sale while following the same UI Foundry product language used by the button generator. It keeps local shared controls, local presets, local export utilities, and no runtime dependency on another component app.
 
 ## Product summary
 
 This generator is designed for:
+- profile, team, chat, and account UI builders
+- developers who need editable avatar systems
+- marketplace buyers who want a focused identity component studio
 
-- product designers building user-profile and team interfaces
-- developers who want editable avatar starting points instead of rebuilding the component manually
-- freelancers and agencies preparing polished profile, member-list, and chat UI
-- buyers who want a self-contained avatar tool that matches the rest of the UI Foundry product line
+The intended workflow is:
 
-The workflow is straightforward:
-
-1. edit the avatar through section-based controls
-2. inspect the live preview
-3. switch to the code view
-4. copy or export the result for production use
+1. choose a preset or start from the default state
+2. edit the component through sectioned controls
+3. inspect the live preview in the shared dark studio canvas
+4. switch to code view when needed
+5. copy or download the generated React output
 
 ## What the product includes
 
-- section-based editing controls
+- standalone Next.js app structure
+- section-based editor shell
+- local shared controls for color, typography, inputs, sliders, switches, sections, and preview/download panels
 - live preview panel
 - code view with copy support
-- file export support
-- searchable preset library
-- generated premium preset catalog with filters, paging, and surprise-me apply
-- structured preset browsing with explicit family, archetype, and size filtering
-- dedicated framing and presence surfaces for object position, status/badge coexistence, and group layout
-- undo and redo controls
-- self-contained standalone app structure
+- React-only export path
+- download filename control
+- preview background controls
+- preset application flow with full-state updates
+- accessibility and state-preview guidance where native to the component
+- self-contained package files for independent repo publishing
 
-## Editing coverage
+## Native editing surface
 
-The editor currently includes these control areas:
+The editor is focused on controls that are native to Avatar and useful in real product work:
+- image source, srcSet-aware presentation, initials, icon fallback, and alt/title metadata
+- shape, radius, mask, ring, border, shadow, material, and surface treatment
+- status, badge, accessory, and grouped-avatar layout controls
+- loading, error, fallback, and grouped state preview surfaces
+- accessibility labels and decorative-vs-meaningful avatar intent
 
-- Presets
-- Basics
-- Framing
-- Sizing
-- Style
-- Effects
-- 3D
-- Motion
-- Status
-- Group
-- A11y
+The goal is maximum useful depth without adding unrelated controls that would make the component stop reading as Avatar.
 
-These sections cover the core avatar surface, framing behavior, size behavior, visual treatment, depth and motion styling, status and badge coexistence, grouped-avatar presentation, and accessibility metadata.
+## Preset model
+
+Presets are treated as full editor states, not just color swaps. The suite-wide preset contract is:
+
+- family
+- archetype
+- variant
+- size
+- tags
+- state
+
+Applying a preset should update the complete editable state and reset transient preview state so the preview and export stay aligned.
 
 ## Export workflow
 
-The app keeps the preview and code output connected to the same current avatar state so users can style visually and then export the matching implementation.
+The shipped export contract is React-only. The live preview, visible code, copied code, and downloaded file are expected to come from the same current React payload so users do not see one result and export another.
 
-## Why this product is useful
+## Consistency contract
 
-This is more useful than a fixed avatar snippet because it gives the buyer an editable avatar system with a real playground, not just one hard-coded design.
+This studio is intentionally structured to be both independently sellable and merge-ready for a future UI Foundry SaaS product:
 
-## Tech
+- no runtime imports from button-component
+- no runtime imports from shared-templates
+- no runtime imports from another component studio
+- common editing tasks use the same local control patterns as the button canon
+- shared state names such as previewResetKey, previewBgMode, previewBgInput, and downloadName are preserved where applicable
+
+## Tech stack
 
 - Next.js
 - React
 - TypeScript
+- Tailwind CSS
+- local component/editor utilities
 
+## Commands
+
+    npm install
+    npm run typecheck
+    npm run lint -- --quiet
+    npm run build
+    npm run dev
+
+## Verification checklist
+
+Before publishing a new version, verify:
+
+- install completes without dependency errors
+- typecheck passes
+- lint has no blocking errors
+- production build completes
+- preview and generated React code match
+- copied code and downloaded code match the visible code
+- no generated node_modules, .next, or build artifacts are committed
+
+## Repository
+
+This repo is intended to publish as Abid-Al-Hossain/UI_avatar.
