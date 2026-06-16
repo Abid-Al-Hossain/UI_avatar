@@ -69,6 +69,18 @@ export function buildAvatarExport(params: AvatarExportParams) {
     ariaLabel,
     ariaRole,
     ariaHidden,
+    ariaDescribedBy,
+    focusRingEnabled,
+    focusRingWidth,
+    focusRingOffset,
+    focusRingColor,
+    transitionDuration,
+    transitionEasing,
+    disabled,
+    disabledOpacity,
+    disabledCursor,
+    hoverBorderColor,
+    hoverOpacity,
     downloadName,
   } = params;
 
@@ -105,6 +117,11 @@ export function buildAvatarExport(params: AvatarExportParams) {
     initialsColor,
     boxShadow,
     transform,
+    transitionDuration,
+    transitionEasing,
+    disabled,
+    disabledOpacity,
+    disabledCursor,
   });
   const imageStyle = resolveAvatarImageStyle({
     objectFit,
@@ -168,6 +185,11 @@ export default function Avatar() {
   const [imgLoaded, setImgLoaded] = React.useState(loadingState !== "loading");
   const [imgError, setImgError] = React.useState(loadingState === "error");
   const [isHovered, setIsHovered] = React.useState(false);
+  const [isFocused, setIsFocused] = React.useState(false);
+  const disabled = ${disabled ? "true" : "false"};
+  const hoverBorderColor = ${q(hoverBorderColor)};
+  const hoverOpacity = ${Number(hoverOpacity)};
+  const focusRingEnabled = ${focusRingEnabled ? "true" : "false"};
   const variants = {
     hidden: { opacity: ENTRANCE === "fade" ? 0 : 1, scale: ENTRANCE === "scale" ? 0 : 1, x: ENTRANCE === "slide" ? -50 : 0 },
     visible: { opacity: 1, scale: 1, x: 0, transition: { type: "spring" as const, stiffness: 260, damping: 20 } },
@@ -236,11 +258,20 @@ export default function Avatar() {
         transform: rootStyle.transform,
         transformStyle: "preserve-3d",
         ${hoverEffect === "holo-card" ? "rotateX, rotateY," : ""}
+        borderColor: isHovered && !disabled && hoverBorderColor ? hoverBorderColor : rootStyle.borderColor,
+        opacity: isHovered && !disabled && hoverOpacity !== 1 ? hoverOpacity : rootStyle.opacity,
+        outline: isFocused && focusRingEnabled ? \`${focusRingWidth}px solid ${focusRingColor}\` : undefined,
+        outlineOffset: isFocused && focusRingEnabled ? ${focusRingOffset} : undefined,
       }}
       title={${q(title || alt || undefined)}}
       role={${ariaHidden ? "undefined" : `${q(ariaRole)} === "none" ? undefined : ${q(ariaRole)}`}}
       aria-hidden={${ariaHidden ? "true" : "undefined"}}
       aria-label={${ariaHidden ? "undefined" : q(ariaLabel || alt)}}
+      aria-describedby={${ariaHidden ? "undefined" : q(ariaDescribedBy || undefined)}}
+      aria-disabled={disabled || undefined}
+      tabIndex={focusRingEnabled && !disabled ? 0 : undefined}
+      onFocus={() => setIsFocused(true)}
+      onBlur={() => setIsFocused(false)}
     >
       <div
         className="flex items-center justify-center text-xl font-bold"

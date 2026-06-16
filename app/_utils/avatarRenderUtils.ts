@@ -75,7 +75,14 @@ export function resolveAvatarRootStyle(params: {
   initialsColor: string;
   boxShadow: string;
   transform: string;
+  transitionDuration?: number;
+  transitionEasing?: string;
+  disabled?: boolean;
+  disabledOpacity?: number;
+  disabledCursor?: string;
 }): CSSProperties {
+  const transitionDuration = params.transitionDuration ?? 300;
+  const transitionEasing = params.transitionEasing ?? "ease";
   return {
     position: "relative",
     width: params.size,
@@ -92,10 +99,11 @@ export function resolveAvatarRootStyle(params: {
     alignItems: "center",
     justifyContent: "center",
     fontFamily: params.fontFamily,
-    opacity: params.opacity / 100,
+    opacity: params.disabled ? (params.disabledOpacity ?? 0.5) : params.opacity / 100,
     boxShadow: params.boxShadow,
-    transition: "all 0.3s ease",
-    cursor: "default",
+    transition: transitionDuration > 0 ? `all ${transitionDuration}ms ${transitionEasing}` : "none",
+    cursor: params.disabled ? (params.disabledCursor ?? "not-allowed") : "default",
+    pointerEvents: params.disabled ? "none" : undefined,
     userSelect: "none",
     transform: params.transform,
   };

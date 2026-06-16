@@ -61,6 +61,7 @@ import StatusSection from "./_section/StatusSection";
 import EffectsSection from "./_section/EffectsSection";
 import GroupPreviewSection from "./_section/GroupPreviewSection";
 import AccessibilitySection from "./_section/AccessibilitySection";
+import StatesSection from "./_section/StatesSection";
 import PresetsSection from "./_section/PresetsSection";
 
 import useHydrated from "@/components/hooks/useHydrated";
@@ -139,6 +140,18 @@ export default function AvatarPage() {
     ariaLabel,
     ariaRole,
     ariaHidden,
+    ariaDescribedBy,
+    focusRingEnabled,
+    focusRingWidth,
+    focusRingOffset,
+    focusRingColor,
+    transitionDuration,
+    transitionEasing,
+    disabled,
+    disabledOpacity,
+    disabledCursor,
+    hoverBorderColor,
+    hoverOpacity,
   } = state;
 
   // -- Proxy Setters for Backward Compatibility --
@@ -206,6 +219,18 @@ export default function AvatarPage() {
   const setAriaLabel = makeSetter("ariaLabel");
   const setAriaRole = makeSetter("ariaRole");
   const setAriaHidden = makeSetter("ariaHidden");
+  const setAriaDescribedBy = makeSetter("ariaDescribedBy");
+  const setFocusRingEnabled = makeSetter("focusRingEnabled");
+  const setFocusRingWidth = makeSetter("focusRingWidth");
+  const setFocusRingOffset = makeSetter("focusRingOffset");
+  const setFocusRingColor = makeSetter("focusRingColor");
+  const setTransitionDuration = makeSetter("transitionDuration");
+  const setTransitionEasing = makeSetter("transitionEasing");
+  const setDisabled = makeSetter("disabled");
+  const setDisabledOpacity = makeSetter("disabledOpacity");
+  const setDisabledCursor = makeSetter("disabledCursor");
+  const setHoverBorderColor = makeSetter("hoverBorderColor");
+  const setHoverOpacity = makeSetter("hoverOpacity");
   const setLoadingState = makeSetter("loadingState");
   const applyPreset = (presetState: Partial<AvatarState>) => {
     updateState(() => ({ ...INITIAL_STATE, ...presetState }));
@@ -232,6 +257,7 @@ export default function AvatarPage() {
     { id: "status", label: "Status" },
     { id: "grouping", label: "Grouping" },
     { id: "accessibility", label: "Accessibility" },
+    { id: "states", label: "States" },
   ];
 
   const handleReset = () => {
@@ -360,6 +386,18 @@ export default function AvatarPage() {
       ariaLabel,
       ariaRole,
       ariaHidden,
+      ariaDescribedBy,
+      focusRingEnabled,
+      focusRingWidth,
+      focusRingOffset,
+      focusRingColor,
+      transitionDuration,
+      transitionEasing,
+      disabled,
+      disabledOpacity,
+      disabledCursor,
+      hoverBorderColor,
+      hoverOpacity,
       downloadName: downloadName || "",
     };
   }, [
@@ -416,6 +454,18 @@ export default function AvatarPage() {
     ariaLabel,
     ariaRole,
     ariaHidden,
+    ariaDescribedBy,
+    focusRingEnabled,
+    focusRingWidth,
+    focusRingOffset,
+    focusRingColor,
+    transitionDuration,
+    transitionEasing,
+    disabled,
+    disabledOpacity,
+    disabledCursor,
+    hoverBorderColor,
+    hoverOpacity,
     downloadName,
   ]);
 
@@ -467,6 +517,11 @@ export default function AvatarPage() {
     initialsColor,
     boxShadow,
     transform,
+    transitionDuration,
+    transitionEasing,
+    disabled,
+    disabledOpacity,
+    disabledCursor,
   });
   const imageStyle = resolveAvatarImageStyle({
     objectFit,
@@ -521,6 +576,8 @@ export default function AvatarPage() {
             setAriaRole={setAriaRole}
             ariaHidden={ariaHidden}
             setAriaHidden={setAriaHidden}
+            ariaDescribedBy={ariaDescribedBy}
+            setAriaDescribedBy={setAriaDescribedBy}
           />
         );
       case "framing":
@@ -671,6 +728,33 @@ export default function AvatarPage() {
             ariaHidden={ariaHidden}
           />
         );
+      case "states":
+        return (
+          <StatesSection
+            focusRingEnabled={focusRingEnabled}
+            setFocusRingEnabled={setFocusRingEnabled}
+            focusRingWidth={focusRingWidth}
+            setFocusRingWidth={setFocusRingWidth}
+            focusRingOffset={focusRingOffset}
+            setFocusRingOffset={setFocusRingOffset}
+            focusRingColor={focusRingColor}
+            setFocusRingColor={setFocusRingColor}
+            transitionDuration={transitionDuration}
+            setTransitionDuration={setTransitionDuration}
+            transitionEasing={transitionEasing}
+            setTransitionEasing={setTransitionEasing}
+            disabled={disabled}
+            setDisabled={setDisabled}
+            disabledOpacity={disabledOpacity}
+            setDisabledOpacity={setDisabledOpacity}
+            disabledCursor={disabledCursor}
+            setDisabledCursor={setDisabledCursor}
+            hoverBorderColor={hoverBorderColor}
+            setHoverBorderColor={setHoverBorderColor}
+            hoverOpacity={hoverOpacity}
+            setHoverOpacity={setHoverOpacity}
+          />
+        );
       default:
         return null;
     }
@@ -718,6 +802,14 @@ export default function AvatarPage() {
       hoverGrayscale={hoverGrayscale}
       imageRotation={imageRotation}
       imageScale={imageScale}
+      ariaDescribedBy={ariaDescribedBy}
+      focusRingEnabled={focusRingEnabled}
+      focusRingWidth={focusRingWidth}
+      focusRingOffset={focusRingOffset}
+      focusRingColor={focusRingColor}
+      disabled={disabled}
+      hoverBorderColor={hoverBorderColor}
+      hoverOpacity={hoverOpacity}
       effect3D={effect3D}
       use3DBadge={use3DBadge}
       badgeAnimate={badgeAnimate}

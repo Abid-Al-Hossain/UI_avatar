@@ -66,6 +66,16 @@ export type AvatarPreviewProps = {
   ariaLabel: string;
   ariaRole: "img" | "figure" | "presentation" | "none";
   ariaHidden: boolean;
+  ariaDescribedBy: string;
+
+  focusRingEnabled: boolean;
+  focusRingWidth: number;
+  focusRingOffset: number;
+  focusRingColor: string;
+
+  disabled: boolean;
+  hoverBorderColor: string;
+  hoverOpacity: number;
 
   // Advanced State
   use3DBadge: ThreeDBadgeMode;
@@ -110,6 +120,14 @@ export default function AvatarLivePreview(props: AvatarPreviewProps) {
     ariaLabel,
     ariaRole,
     ariaHidden,
+    ariaDescribedBy,
+    focusRingEnabled,
+    focusRingWidth,
+    focusRingOffset,
+    focusRingColor,
+    disabled,
+    hoverBorderColor,
+    hoverOpacity,
     status,
     statusPosition,
     statusAnimation,
@@ -183,6 +201,7 @@ export default function AvatarLivePreview(props: AvatarPreviewProps) {
   const [imgError, setImgError] = React.useState(false);
   const [imgLoaded, setImgLoaded] = React.useState(false);
   const [isHovered, setIsHovered] = React.useState(false);
+  const [isFocused, setIsFocused] = React.useState(false);
 
   // Reset states when src changes
   // Reset states when src changes or loadingState changes
@@ -301,15 +320,33 @@ export default function AvatarLivePreview(props: AvatarPreviewProps) {
         style={{
           position: "relative",
           ...containerStyle,
+          borderColor:
+            isHovered && !disabled && hoverBorderColor
+              ? hoverBorderColor
+              : containerStyle.borderColor,
+          opacity:
+            isHovered && !disabled && hoverOpacity !== 1
+              ? hoverOpacity
+              : containerStyle.opacity,
           rotateX: hoverEffect === "holo-card" ? rotateX : 0,
           rotateY: hoverEffect === "holo-card" ? rotateY : 0,
           transformStyle: "preserve-3d",
           overflow: "hidden",
+          outline:
+            isFocused && focusRingEnabled
+              ? `${focusRingWidth}px solid ${focusRingColor}`
+              : undefined,
+          outlineOffset: isFocused && focusRingEnabled ? focusRingOffset : undefined,
         }}
         title={title || alt || undefined}
         role={ariaHidden || ariaRole === "none" ? undefined : ariaRole}
         aria-hidden={ariaHidden || undefined}
         aria-label={ariaHidden ? undefined : ariaLabel || alt}
+        aria-describedby={ariaHidden ? undefined : ariaDescribedBy || undefined}
+        aria-disabled={disabled || undefined}
+        tabIndex={focusRingEnabled && !disabled ? 0 : undefined}
+        onFocus={() => setIsFocused(true)}
+        onBlur={() => setIsFocused(false)}
         layoutId={hoverEffect === "layout" ? "avatar-preview" : undefined}
       >
         {/* Always render Initials/Background as base layer */}

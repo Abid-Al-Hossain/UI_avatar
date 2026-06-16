@@ -74,4 +74,16 @@ export type AvatarExportInput = {
   ariaLabel: string;
   ariaRole: AvatarAriaRole;
   ariaHidden: boolean;
+  ariaDescribedBy: string;
+  focusRingEnabled: boolean;
+  focusRingWidth: number;
+  focusRingOffset: number;
+  focusRingColor: string;
+  transitionDuration: number;
+  transitionEasing: "ease" | "ease-in" | "ease-out" | "ease-in-out" | "linear";
+  disabled: boolean;
+  disabledOpacity: number;
+  disabledCursor: "not-allowed" | "default" | "pointer";
+  hoverBorderColor: string;
+  hoverOpacity: number;
 };

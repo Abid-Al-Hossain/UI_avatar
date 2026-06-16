@@ -17,6 +17,8 @@ type Props = {
   setAriaRole: (v: "img" | "figure" | "presentation" | "none") => void;
   ariaHidden: boolean;
   setAriaHidden: (v: boolean) => void;
+  ariaDescribedBy: string;
+  setAriaDescribedBy: (v: string) => void;
 };
 
 export default function MetadataSection({
@@ -30,6 +32,8 @@ export default function MetadataSection({
   setAriaRole,
   ariaHidden,
   setAriaHidden,
+  ariaDescribedBy,
+  setAriaDescribedBy,
 }: Props) {
   return (
     <div className="space-y-6">
@@ -59,6 +63,14 @@ export default function MetadataSection({
               value={ariaLabel}
               onChange={(e) => setAriaLabel(e.target.value)}
               placeholder="e.g. User profile picture"
+            />
+          </ControlGroup>
+
+          <ControlGroup label="ARIA Described By">
+            <InputControl
+              value={ariaDescribedBy}
+              onChange={(e) => setAriaDescribedBy(e.target.value)}
+              placeholder="id of an element with extra description"
             />
           </ControlGroup>
         </div>

@@ -79,6 +79,26 @@ export interface AvatarState {
   ariaLabel: string;
   ariaRole: AvatarAriaRole;
   ariaHidden: boolean;
+  ariaDescribedBy: string;
+
+  // Focus Ring
+  focusRingEnabled: boolean;
+  focusRingWidth: number;
+  focusRingOffset: number;
+  focusRingColor: string;
+
+  // Transitions
+  transitionDuration: number;
+  transitionEasing: "ease" | "ease-in" | "ease-out" | "ease-in-out" | "linear";
+
+  // Disabled state
+  disabled: boolean;
+  disabledOpacity: number;
+  disabledCursor: "not-allowed" | "default" | "pointer";
+
+  // Fine-grain hover (beyond hoverZoom/hoverGrayscale toggles)
+  hoverBorderColor: string;
+  hoverOpacity: number;
 }
 
 export const INITIAL_STATE: AvatarState = {
@@ -135,6 +155,22 @@ export const INITIAL_STATE: AvatarState = {
   ariaLabel: "",
   ariaRole: "img",
   ariaHidden: false,
+  ariaDescribedBy: "",
+
+  focusRingEnabled: true,
+  focusRingWidth: 2,
+  focusRingOffset: 2,
+  focusRingColor: "#38bdf8",
+
+  transitionDuration: 300,
+  transitionEasing: "ease",
+
+  disabled: false,
+  disabledOpacity: 0.5,
+  disabledCursor: "not-allowed",
+
+  hoverBorderColor: "#38bdf8",
+  hoverOpacity: 1,
 };
 
 export type AvatarPreset = {
