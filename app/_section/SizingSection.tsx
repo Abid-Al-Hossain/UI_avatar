@@ -18,6 +18,7 @@ export default function SizingSection(props: {
   return (
     <div className="space-y-6">
       <SectionCard title="Dimensions" subtitle="Size of the avatar component.">
+      <div className="space-y-4">
         <SizeControl
           label="Size (px)"
           value={parseInt(props.size) || 96}
@@ -35,7 +36,8 @@ export default function SizingSection(props: {
             />
           </LabeledField>
         </div>
-      </SectionCard>
+      </div>
+    </SectionCard>
 
       <SectionCard title="Shape" subtitle="Corner radius configuration.">
         <div className="space-y-4">
