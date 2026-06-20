@@ -1,6 +1,7 @@
 "use client";
 
 import React, {
+import ContrastGuard from "@/components/shared/color/ContrastGuard";
   useState,
   useRef,
   useEffect,
@@ -888,6 +889,7 @@ export default function AvatarPage() {
         controls={controls}
         preview={preview}
       />
-    </AppShell>
+
+<ContrastGuard /></AppShell>
   );
 }
