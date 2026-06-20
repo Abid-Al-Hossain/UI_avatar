@@ -1,7 +1,6 @@
 "use client";
 
 import React, {
-import ContrastGuard from "@/components/shared/color/ContrastGuard";
   useState,
   useRef,
   useEffect,
