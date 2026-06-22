@@ -9,6 +9,7 @@ import React, {
 } from "react";
 import dynamic from "next/dynamic";
 import AppShell from "@/components/shared/layout/AppShell";
+import ContrastGuard from "@/components/shared/color/ContrastGuard";
 import PreviewDownloadPanel, {
 } from "@/components/shared/layout/SharedPreviewDownloadPanel";
 import type { PreviewCanvasMode } from "@/components/shared/layout/PreviewPanel";
